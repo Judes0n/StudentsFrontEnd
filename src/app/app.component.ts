@@ -11,14 +11,4 @@ export class AppComponent {
   constructor(private router : Router) {
   }
   title = 'StudentsFrontEnd';
-  form : FormGroup = new FormGroup({
-    id : new FormControl(null)
-  });
-
-  Sub(){
-    setTimeout(() => {
-      this.router.navigate(['/Details/'+this.form.get('id').value]);
-    }, 100);
-
-  }
 }

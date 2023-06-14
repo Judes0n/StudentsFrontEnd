@@ -69,9 +69,17 @@ export class DetailsComponent implements OnInit {
     this.form.get('course').setValue(this.studentData.course);
   }
 
-  redirect(_id : number)
+  async redirect(_id : number)
   {
       this.router.navigate(['/Details/'+_id]);
-      this.ngOnInit();
+      try{
+      this.studentData = await this.http.get<Student>('https://localhost:7136'+`/api/Students/GetStudent/${_id}`).toPromise();
+      }
+      catch
+      {
+        alert("Data not Available\nRedirecting to Home");
+        this.router.navigate(['/']);
+      }
+      this.setstudentData();
   }
 }
