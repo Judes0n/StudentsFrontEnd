@@ -1,0 +1,38 @@
+<div class="container-fluid">
+<form [formGroup]="form" (ngSubmit)="Sub()">
+  <div class="form-group border p-3 mt-4">
+      <h4 class="text-dark"> NEW STUDENT </h4>
+      <hr/>
+      <div class="row p-2 mb-3">
+          <label class="form-label text-center col-2 p-2">Student Name</label>
+          <input class=" col -6 form-control" formControlName="name" />
+      </div>
+      <div class="alert alert-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched ">Name is a Required field</div>
+      <div class="row p-2 mb-3">
+          <label class="col-2 text-center p-0">Age</label>
+          <input type="number" class=" col -6 form-control" formControlName="age" (change)="setDob()"/>
+      </div>
+      <div class="alert alert-danger" *ngIf="form.get('age').hasError('required') && form.get('age').touched">Age is a Required field</div>
+      <div class="alert alert-danger" *ngIf="form.get('age').hasError('min') || form.get('age').hasError('max') && form.get('age').touched ">Age must be between 18 & 45</div>
+      <div class="row p-2 mb-3">
+        <label class="col-2 text-center p-0">Date of Birth</label>
+        <input type="date" [max]="eligibleDate" class=" col -6 form-control" formControlName="dob" (change)="setAge()" />
+    </div>
+    <div class="alert alert-danger" *ngIf="form.get('dob').hasError('required') && form.get('dob').touched ">Date of Birth is a Required field</div>
+    <div class="row p-2 mb-3">
+      <label class="col-2 text-center p-0">Course</label>
+      <input class=" col -6 form-control" formControlName="course"/>
+    </div>
+    <div class="alert alert-danger" *ngIf="form.get('course').hasError('required') && form.get('course').touched ">Course is a Required field</div>
+    <div class="alert alert-danger" *ngIf="form.get('course').hasError('minlength') && form.get('course').touched ">Course must have more than 2 Letters</div>
+      <div class="row">
+          <div class="col-6 col-md-3">
+              <button type="submit" class="btn btn-dark form-control" [disabled]="form.invalid">ADD</button>
+          </div>
+          <div class="col-6 col-md-3">
+              <a routerLink="/Home" class="btn btn-danger form-control"> Back </a>
+          </div>
+      </div>
+  </div>
+</form>
+</div>

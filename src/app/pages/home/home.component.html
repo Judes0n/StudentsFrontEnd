@@ -1,0 +1,54 @@
+<div class="container-fluid">
+<div class="text-end mb-2"><a class="btn btn-dark" routerLink="/Create"><i class="bi bi-journal-plus"></i> &nbsp;Add Student</a ></div>
+<table class="table table-bordered table-stripped">
+  <thead class="text-center">
+    <tr>
+      <th>
+        Student ID
+      </th>
+      <th>
+        Student Name
+      </th>
+      <th>
+        Age
+      </th>
+      <th>
+        Date of Birth
+      </th>
+      <th>
+        Course
+      </th>
+      <th>
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="students && students.length" class="text-center">
+    <tr *ngFor="let student of students">
+      <td>
+        {{student.studentId}}
+      </td>
+      <td>
+        {{student.name}}
+      </td>
+      <td>
+        {{student.age}}
+      </td>
+      <td>
+        {{student.dob}}
+      </td>
+      <td>
+        {{student.course}}
+      </td>
+      <td>
+        <a class="btn btn-outline-success" [routerLink]="['/Details', student.studentId ]">Edit/View</a>
+        &nbsp;&nbsp;&nbsp;
+        <a class="btn btn-outline-danger" (click)="Delete(student.studentId)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  <div class="alert alert-info" *ngIf="!(students&& students.length)">
+    No Records Found
+  </div>
+</div>
